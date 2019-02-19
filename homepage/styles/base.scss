@@ -1,0 +1,98 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    color: #777788;
+}
+
+#maintenance_message {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 9999;
+    display: table;
+    width: auto;
+    margin: 0 auto;
+}
+
+#maintenance_text {
+    display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.clearfix {
+    clear: both;
+}
+
+header {
+    position: relative;
+    padding: 5px 20px 10px 20px;
+    text-align: center;
+
+    > .title {
+        display: inline-block;
+        color: #3771A1;
+        font-size: 40px;
+        font-weight: bold;
+        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+        vertical-align: middle;
+    }
+
+    img {
+        vertical-align: middle;
+        margin-right: 24px;
+    }
+
+    .account {
+        position: absolute; 
+        right: 0;
+        margin-right: 20px;
+    }
+}
+$side_col_width: 200px;
+main {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    #site_left {
+        background-color: green;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: $side_col_width;
+        height: 300px;
+    }
+
+    #site_center {
+        padding: 5px;
+        background-color: pink;
+        margin-left: $side_col_width;
+        margin-right: $side_col_width;
+        min-height: 300px;
+    }
+
+    #site_right {
+        background-color: lightblue;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: $side_col_width;
+        height: 300px;
+    }
+}
+
+footer {
+    width: 100%;
+    background-color: orange;
+    height: 25px;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #CCCCCC;
+    text-align: center;
+
+}
