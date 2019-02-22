@@ -5,5 +5,4 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     birthdate = models.DateTimeField()
-    favcolor = models.TextField()
     
