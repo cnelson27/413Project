@@ -1,0 +1,32 @@
+-   model: account.user
+    pk: 2
+    fields:
+        password: pbkdf2_sha256$120000$37PjYBNObTrr$oYiH+/g5RDz4Lc4vQXN6/F87sFfVMJSgikm70GWnQU4=
+        last_login: null
+        is_superuser: false
+        username: homer
+        first_name: Homer
+        last_name: Simpson
+        email: homer@simpsons.com
+        is_staff: false
+        is_active: true
+        date_joined: 2019-02-23 01:05:27.002141+00:00
+        birthdate: 2017-01-01 05:00:00+00:00
+        groups: []
+        user_permissions: []
+-   model: account.user
+    pk: 4
+    fields:
+        password: pbkdf2_sha256$120000$wu5msSPO4Z90$Ov2jSkreE3ZXfHOqd+j52+1rqrM06y5g5TQMTxpnuxY=
+        last_login: null
+        is_superuser: true
+        username: colby
+        first_name: ''
+        last_name: ''
+        email: colby27@byu.edu
+        is_staff: true
+        is_active: true
+        date_joined: 2019-02-23 03:39:00.659219+00:00
+        birthdate: null
+        groups: []
+        user_permissions: []
