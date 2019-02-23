@@ -33,6 +33,18 @@ class AccountTests(TestCase):
         # if it worked, the response should be a redirect code (login.py returned HttpResponseRedirect)
         self.assertEqual(response.status_code, 302, msg="User wasn't redirected")
 
+    def test_create_user(self):
+        u = amod.User()
+        u.id = 412
+        u.first_name = 'Harry'
+        u.last_name = 'Potter'
+        u.email = 'hp@hogwarts.edu'
+        u.set_password('hermione')
+        u.save()
+        u2 = amod.User.objects.get(412)
+        self.assertEqual(u.first_name, u2.first_name, msg="User not saved correctly")
+
+
     def print_html(self, content):
         '''Helper to pretty-print HTML'''
         content = content.strip()
