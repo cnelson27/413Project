@@ -1,5 +1,6 @@
 from django.test import TestCase
 from account import models as amod
+from django.contrib.auth import models as pmod
 from datetime import datetime
 from lxml import etree
 
@@ -41,9 +42,34 @@ class AccountTests(TestCase):
         u.email = 'hp@hogwarts.edu'
         u.set_password('hermione')
         u.save()
-        u2 = amod.User.objects.get(412)
+        u2 = amod.User.objects.get(id=412)
         self.assertEqual(u.first_name, u2.first_name, msg="User not saved correctly")
 
+    def test_permissions_users(self):
+        p = pmod.Permission()
+        p.codename = 'Djugo'
+        p.name = 'Dar jugo'
+        p.content_type = pmod.Permission.objects.get(codename='add_user').content_type
+        p.save()
+        homer = amod.User.objects.get(username='homer')
+        homer.user_permissions.add(pmod.Permission.objects.get(codename='Djugo'))
+        homer = amod.User.objects.get(username='homer')
+        self.assertEqual(homer.has_perm('account.Djugo'), True, msg="User permissions did not set correctly")
+    
+    def test_permissions_groups(self):
+        p1 = pmod.Permission()
+        p1.codename = 'fome'
+        p1.name = 'Ser fome'
+        p1.content_type = pmod.Permission.objects.get(codename='add_user').content_type
+        p1.save()
+        g1 = pmod.Group()
+        g1.name = 'Argentinos'
+        g1.save()
+        g1.permissions.add(pmod.Permission.objects.get(codename='fome'))
+        homer = amod.User.objects.get(username='homer')
+        homer.groups.add(pmod.Group.objects.get(name='Argentinos'))
+        homer = amod.User.objects.get(username='homer')
+        self.assertEqual(homer.has_perm('account.fome'), True, msg='Group permissions not setting correctly')
 
     def print_html(self, content):
         '''Helper to pretty-print HTML'''
