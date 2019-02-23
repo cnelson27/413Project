@@ -7,6 +7,14 @@ class AccountTests(TestCase):
 
     def test_user_get(self):
         u2 = amod.User.objects.get(id=2)
-        # BAD BAD WOLF - just while developing this test
-        print('>>>>', u2.first_name)
+        self.assertEqual(u2.first_name, 'Homer', 'Name should have been Homer')
 
+    def test_user_create(self):
+        u = amod.User()
+        u.first_name = 'Harry'
+        u.last_name = 'Potter'
+        u.username = 'harry'
+        u.set_password = 'hermione'
+        u.save()
+        u2 = amod.User.objects.get(u.username)
+        self.assertEqual(u.first_name, u2.first_name, msg='User is not created successfully')
