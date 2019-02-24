@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1550951793.2063284
+_modified_time = 1550967775.096192
 _enable_loop = True
 _template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/homepage/templates/base.htm'
 _template_uri = '/homepage/templates/base.htm'
@@ -16,24 +16,26 @@ _exports = ['title', 'site_menu', 'site_left', 'site_center', 'site_right']
 
 
 from datetime import datetime 
+           
 
 def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def title():
-            return render_title(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
         self = context.get('self', UNDEFINED)
-        def site_right():
-            return render_site_right(context._locals(__M_locals))
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def site_center():
             return render_site_center(context._locals(__M_locals))
-        def site_left():
-            return render_site_left(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
         def site_menu():
             return render_site_menu(context._locals(__M_locals))
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def site_right():
+            return render_site_right(context._locals(__M_locals))
+        user = context.get('user', UNDEFINED)
+        def site_left():
+            return render_site_left(context._locals(__M_locals))
+        def title():
+            return render_title(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('<!DOCTYPE html>\r\n<html>\r\n    \r\n    <head>\r\n        <meta charset="UTF-8">\r\n        <meta name="viewport" content="width=device-width, initial-scale=1">\r\n\r\n        <title>Jedi &mdash; ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
@@ -66,9 +68,30 @@ def render_body(context,**pageargs):
             context['self'].site_menu(**pageargs)
         
 
-        __M_writer('\r\n                        <li class="nav-item account"> \r\n                            <a class="nav-link ')
+        __M_writer('\r\n                        ')
+ 
+        if user.is_authenticated:
+            m = 'inline'
+            n = 'none' 
+            u = user.first_name
+            
+        else:
+            n = 'inline'
+            m = 'none'
+            u = ''
+                                
+        
+        __M_locals_builtin_stored = __M_locals_builtin()
+        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['m','u','n'] if __M_key in __M_locals_builtin_stored]))
+        __M_writer('\r\n                        \r\n                        <li class="nav-item account" style="display: ')
+        __M_writer(django_mako_plus.ExpressionPostProcessor(self)( n ))
+        __M_writer('">\r\n                            <a class="nav-link ')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( 'active' if request.dmp.page == 'login' else '' ))
-        __M_writer('" href="/account/login/">Login</a>\r\n                        </li>\r\n                        <li class="nav-item dropdown account">\r\n                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello User!</a>\r\n                            <div class="dropdown-menu">\r\n                                <a class="dropdown-item" href="/account/logout/">Logout</a>\r\n                            </div>\r\n                        </li>\r\n                    </ul>\r\n                </nav>\r\n            </div>\r\n        </header>\r\n\r\n        <main>\r\n            <div id="site_left">\r\n                ')
+        __M_writer('" href="/account/login/">Login</a>\r\n                        </li>\r\n                        <li class="nav-item dropdown account" style="display: ')
+        __M_writer(django_mako_plus.ExpressionPostProcessor(self)( m ))
+        __M_writer('">\r\n                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ')
+        __M_writer(django_mako_plus.ExpressionPostProcessor(self)( u ))
+        __M_writer('!</a>\r\n                            <div class="dropdown-menu">\r\n                                <a class="dropdown-item" href="/account/logout/">Logout</a>\r\n                            </div>\r\n                        </li>\r\n                    </ul>\r\n                </nav>\r\n            </div>\r\n        </header>\r\n\r\n        <main>\r\n            <div id="site_left">\r\n                ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'site_left'):
             context['self'].site_left(**pageargs)
         
@@ -153,6 +176,6 @@ def render_site_right(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/homepage/templates/base.htm", "uri": "/homepage/templates/base.htm", "source_encoding": "utf-8", "line_map": {"18": 80, "20": 0, "38": 2, "43": 9, "44": 12, "45": 12, "46": 12, "47": 13, "48": 13, "49": 14, "50": 14, "51": 15, "52": 15, "53": 16, "54": 16, "55": 19, "56": 20, "57": 20, "58": 24, "59": 24, "60": 24, "61": 39, "62": 39, "63": 43, "64": 43, "69": 46, "70": 48, "71": 48, "76": 65, "81": 70, "86": 75, "87": 80, "88": 81, "89": 81, "95": 9, "106": 45, "112": 45, "118": 63, "124": 63, "130": 68, "136": 68, "142": 73, "148": 73, "154": 148}}
+{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/homepage/templates/base.htm", "uri": "/homepage/templates/base.htm", "source_encoding": "utf-8", "line_map": {"18": 92, "21": 0, "40": 2, "45": 9, "46": 12, "47": 12, "48": 12, "49": 13, "50": 13, "51": 14, "52": 14, "53": 15, "54": 15, "55": 16, "56": 16, "57": 19, "58": 20, "59": 20, "60": 24, "61": 24, "62": 24, "63": 39, "64": 39, "65": 43, "66": 43, "71": 46, "72": 47, "86": 57, "87": 59, "88": 59, "89": 60, "90": 60, "91": 62, "92": 62, "93": 63, "94": 63, "99": 77, "104": 82, "109": 87, "110": 93, "111": 94, "112": 94, "118": 9, "129": 45, "135": 45, "141": 75, "147": 75, "153": 80, "159": 80, "165": 85, "171": 85, "177": 171}}
 __M_END_METADATA
 """

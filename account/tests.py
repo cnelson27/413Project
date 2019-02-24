@@ -6,7 +6,7 @@ from lxml import etree
 
 # Create your tests here.
 class AccountTests(TestCase):
-    fixtures = [ 'account.yaml' ]
+    fixtures = [ 'account.yaml', 'auth.yaml' ]
 
     def setUp(self):
         self.homer = amod.User.objects.get(username='homer')

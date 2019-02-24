@@ -44,11 +44,23 @@
                         </li>
                         <%block name="site_menu">
                         </%block>
-                        <li class="nav-item account"> 
+                        <% 
+                            if user.is_authenticated:
+                                m = 'inline'
+                                n = 'none' 
+                                u = user.first_name
+                                
+                            else:
+                                n = 'inline'
+                                m = 'none'
+                                u = ''
+                        %>
+                        
+                        <li class="nav-item account" style="display: ${ n }">
                             <a class="nav-link ${ 'active' if request.dmp.page == 'login' else '' }" href="/account/login/">Login</a>
                         </li>
-                        <li class="nav-item dropdown account">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello User!</a>
+                        <li class="nav-item dropdown account" style="display: ${ m }">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ${ u }!</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="/account/logout/">Logout</a>
                             </div>
@@ -77,7 +89,8 @@
         </main>
 
         <footer>
-            <%! from datetime import datetime %>
+            <%! from datetime import datetime 
+            %>
             &copy; Copyright ${ datetime.now().strftime('%Y') }. All Rights Reserved.
         </footer>
 

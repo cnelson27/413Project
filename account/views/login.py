@@ -6,7 +6,6 @@ from django.core.exceptions import ValidationError
 
 @view_function
 def process_request(request):
-    
     if request.method == 'POST':
         #Populate form with posted data
         form = loginForm(request.POST)
