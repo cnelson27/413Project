@@ -33,6 +33,37 @@ class AccountTests(TestCase):
         self.assertEqual(request.user.id, self.homer.id, msg="User should have been homer")
         # if it worked, the response should be a redirect code (login.py returned HttpResponseRedirect)
         self.assertEqual(response.status_code, 302, msg="User wasn't redirected")
+    
+    def test_user_logout(self):
+        credentials = {
+            'username': 'homer',
+            'password': 'doh!'
+        }
+        response = self.client.post('/account/login/', credentials)
+        response = self.client.post('/account/logout/')
+        request = response.wsgi_request
+        self.assertTrue(request.user.id is None, msg="User should have been logged out")
+        self.assertEqual(response.status_code, 302, msg="User wasn't redirected")
+
+    def test_password_change(self):
+        credentials = {
+            'username': 'homer',
+            'password': 'doh!'
+        }
+        homer = amod.User.objects.get(username='homer')
+        homer.set_password('marge')
+        response = self.client.post('/account/login/', credentials)
+        request = response.wsgi_request
+        self.assertFalse(request.user.is_authenticated, msg="User should not have authenticated with old pw")
+        credentials = {
+            'username': 'homer',
+            'password': 'marge'
+        }
+        response = self.client.post('/account/login/', credentials)
+        request = response.wsgi_request
+        self.assertTrue(request.user.is_authenticated, msg="User should have authenticated with new pw")
+        
+
 
     def test_create_user(self):
         u = amod.User()
@@ -58,18 +89,18 @@ class AccountTests(TestCase):
     
     def test_permissions_groups(self):
         p1 = pmod.Permission()
-        p1.codename = 'fome'
-        p1.name = 'Ser fome'
+        p1.codename = 'chile'
+        p1.name = 'Ser bakan'
         p1.content_type = pmod.Permission.objects.get(codename='add_user').content_type
         p1.save()
         g1 = pmod.Group()
-        g1.name = 'Argentinos'
+        g1.name = 'Chileno'
         g1.save()
-        g1.permissions.add(pmod.Permission.objects.get(codename='fome'))
+        g1.permissions.add(pmod.Permission.objects.get(codename='chile'))
         homer = amod.User.objects.get(username='homer')
-        homer.groups.add(pmod.Group.objects.get(name='Argentinos'))
+        homer.groups.add(pmod.Group.objects.get(name='Chileno'))
         homer = amod.User.objects.get(username='homer')
-        self.assertEqual(homer.has_perm('account.fome'), True, msg='Group permissions not setting correctly')
+        self.assertEqual(homer.has_perm('account.chile'), True, msg='Group permissions not setting correctly')
 
     def print_html(self, content):
         '''Helper to pretty-print HTML'''
