@@ -52,6 +52,7 @@ class AccountTests(TestCase):
         }
         homer = amod.User.objects.get(username='homer')
         homer.set_password('marge')
+        homer.save()
         response = self.client.post('/account/login/', credentials)
         request = response.wsgi_request
         self.assertFalse(request.user.is_authenticated, msg="User should not have authenticated with old pw")
