@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1551141291.5712137
+_modified_time = 1551151449.485968
 _enable_loop = True
 _template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/account/templates/login.html'
 _template_uri = 'login.html'
@@ -32,8 +32,8 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         def site_center():
             return render_site_center(context._locals(__M_locals))
-        form = context.get('form', UNDEFINED)
         self = context.get('self', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'site_center'):
@@ -51,12 +51,12 @@ def render_site_center(context,**pageargs):
     try:
         def site_center():
             return render_site_center(context)
-        form = context.get('form', UNDEFINED)
         self = context.get('self', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n    <form method="post">\r\n    <table>\r\n        ')
+        __M_writer('\r\n    <form method="post">\r\n    <table class="center_table">\r\n        ')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( form.as_table() ))
-        __M_writer('\r\n    </table>\r\n    <input type="submit" value="Submit">\r\n  </form>\r\n')
+        __M_writer('\r\n    </table>\r\n    <br />\r\n    <input type="submit" value="Submit">\r\n  </form>\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -64,6 +64,6 @@ def render_site_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/account/templates/login.html", "uri": "login.html", "source_encoding": "utf-8", "line_map": {"29": 0, "38": 1, "43": 10, "49": 3, "57": 3, "58": 6, "59": 6, "65": 59}}
+{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/account/templates/login.html", "uri": "login.html", "source_encoding": "utf-8", "line_map": {"29": 0, "38": 1, "43": 11, "49": 3, "57": 3, "58": 6, "59": 6, "65": 59}}
 __M_END_METADATA
 """
