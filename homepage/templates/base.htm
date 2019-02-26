@@ -44,27 +44,23 @@
                         </li>
                         <%block name="site_menu">
                         </%block>
-                        <% 
-                            if user.is_authenticated:
-                                m = 'inline'
-                                n = 'none' 
-                                u = user.first_name
-                                
-                            else:
-                                n = 'inline'
-                                m = 'none'
-                                u = ''
-                        %>
                         
-                        <li class="nav-item account" style="display: ${ n }">
-                            <a class="nav-link ${ 'active' if request.dmp.page == 'login' else '' }" href="/account/login/">Login</a>
-                        </li>
-                        <li class="nav-item dropdown account" style="display: ${ m }">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ${ u }!</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/account/logout/">Logout</a>
-                            </div>
-                        </li>
+                        %if user.is_authenticated:
+                        <li class="nav-item dropdown account">
+                        <%
+                            u = user.first_name
+                        %>
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ${ u }!</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/account/logout/">Logout</a>
+                                </div>
+                            </li>
+                            
+                        %else:
+                            <li class="nav-item account">
+                                <a class="nav-link ${ 'active' if request.dmp.page == 'login' else '' }" href="/account/login/">Login</a>
+                            </li>
+                        %endif
                     </ul>
                 </nav>
             </div>
