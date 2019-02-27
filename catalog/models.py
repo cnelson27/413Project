@@ -9,13 +9,27 @@ class Category(models.Model):
 class Product(models.Model):
     category = Category(models.ForeignKey)
     last_modified = models.DateTimeField(auto_now=True)
-    status = models.TextField(db_index=True, choices='Active' or 'Inactive' default='Active')
+    STATUS_CHOICES = (
+        ('A', 'Active'),
+        ('I', 'Inactive')
+    )
+    status = models.TextField(
+        db_index=True, 
+        choices=STATUS_CHOICES,
+        default='A')
     name = models.TextField()
     description = models.TextField()
-    price = models.DecimalField(max_digits=8, decimal_places=2
+    price = models.DecimalField(
+        max_digits=8, 
+        decimal_places=2
+    )
     #quantity refers to current in stock
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(default=0)
     # reorder_trigger refers to when we reorder
-    reorder_trigger = models.IntegerField()
+    reorder_trigger = models.IntegerField(default=2)
     # reorder_quantity refers to how many we order
-    reorder_quantity = models.IntegerField()
+    reorder_quantity = models.IntegerField(default=5)
+
+class ProductImage(models.Model):
+    filename = models.TextField()
+    product = Product(models.ForeignKey)
