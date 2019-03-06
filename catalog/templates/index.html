@@ -5,5 +5,11 @@
 </%block>
 <%block name="site_center">
     <div class="site_center"> 
+        <h1 class="text-center">Products</h1>
+        <div id="catalog">
+            %for product in products:
+                <span class="product-container" data-product-id="${ product.id }"></span>
+            %endfor
+        </div>
     </div>
 </%block>

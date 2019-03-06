@@ -1,11 +1,11 @@
 $((function(context) {
     return function() {
-
-        $.ajax({
-            "url": "/catalog/index.tile1/"
-        }).done(function(data) {
-            console.log("IT'S BACK");
-            console.log(data)
+        var containers = $('.product-container');
+        containers.each(function(i, container) {
+            var pid = $(container).attr('data-product-id');
+            $.ajax({
+                url: "/catalog/product.tile/" + pid,
+            });
         });
     }
 })(DMP_CONTEXT.get()));
