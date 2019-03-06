@@ -7,7 +7,7 @@ class Category(models.Model):
     name = models.TextField()
 
 class Product(models.Model):
-    category = Category(models.ForeignKey)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     last_modified = models.DateTimeField(auto_now=True)
     STATUS_CHOICES = (
         ('A', 'Active'),
@@ -32,4 +32,4 @@ class Product(models.Model):
 
 class ProductImage(models.Model):
     filename = models.TextField()
-    product = Product(models.ForeignKey)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
