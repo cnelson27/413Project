@@ -7,5 +7,9 @@ def process_request(request):
     
     return request.dmp.render('index.html')
 
+@view_function
+def tile(request, product.cmod.Product)
+    
+
 
     
