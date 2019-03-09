@@ -1,4 +1,5 @@
 from django.db import models
+from catalog import models as cmod
 
 # Create your models here.
 
@@ -30,6 +31,23 @@ class Product(models.Model):
     # reorder_quantity refers to how many we order
     reorder_quantity = models.IntegerField(default=5)
 
+    def image_url(self):
+        
+        return self.image_urls()[0]
+
+    def image_urls(self):
+        urls = []
+        for pi in ProductImage.objects.filter(product=self):
+            urls.append(pi.image_url())
+        if (urls is None):
+            urls.append()
+        return urls
+
+
+
 class ProductImage(models.Model):
     filename = models.TextField()
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    def image_url(self):
+        return ('{ STATUS_URL }catalog/media/products/' + self.filename)

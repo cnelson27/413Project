@@ -1,0 +1,31 @@
+// * `product-tile`
+//     * display set to `inline-block`
+//     * max-width set to something like 300px
+//     * border set to something
+//     * border-radius set to 5px or similar
+//   * `product-image`
+//     * sets a max-width on the image
+//     * centers the image horizontally
+//   * `product-name` and `product-price`
+//     * centers the text horizontally
+//     * displays under the image
+
+.product-tile {
+    display: inline-block;
+    max-width: 300px;
+    border: solid 1px black;
+    border-radius: 5px;
+}
+
+.product-image {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.product-name {
+    text-align: center;
+}
+
+.product-price {
+    text-align: center;
+}
