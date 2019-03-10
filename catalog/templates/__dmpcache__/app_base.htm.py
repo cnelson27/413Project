@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1551900737.2908509
+_modified_time = 1552177696.1945527
 _enable_loop = True
 _template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/app_base.htm'
 _template_uri = 'app_base.htm'
@@ -14,6 +14,8 @@ import django_mako_plus
 import django.utils.html
 _exports = ['site_menu', 'site_left']
 
+
+from catalog import models as cmod 
 
 def _mako_get_namespace(context, name):
     try:
@@ -37,6 +39,7 @@ def render_body(context,**pageargs):
         def site_left():
             return render_site_left(context._locals(__M_locals))
         __M_writer = context.writer()
+        __M_writer('\r\n')
         __M_writer('\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'site_menu'):
             context['self'].site_menu(**pageargs)
@@ -56,9 +59,9 @@ def render_site_menu(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         request = context.get('request', UNDEFINED)
-        self = context.get('self', UNDEFINED)
         def site_menu():
             return render_site_menu(context)
+        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n    <li class="nav-item">\r\n        <a class="nav-link ')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( 'active' if request.dmp.page == 'contact' else '' ))
@@ -84,6 +87,6 @@ def render_site_left(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/app_base.htm", "uri": "app_base.htm", "source_encoding": "utf-8", "line_map": {"29": 0, "40": 1, "45": 10, "55": 3, "63": 3, "64": 5, "65": 5, "66": 8, "67": 8, "73": 12, "79": 12, "85": 79}}
+{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/app_base.htm", "uri": "app_base.htm", "source_encoding": "utf-8", "line_map": {"18": 2, "31": 0, "42": 1, "43": 2, "48": 11, "58": 4, "66": 4, "67": 6, "68": 6, "69": 9, "70": 9, "76": 13, "82": 13, "88": 82}}
 __M_END_METADATA
 """

@@ -46,8 +46,9 @@ class Product(models.Model):
 
 
 class ProductImage(models.Model):
-    filename = models.TextField()
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    filename = models.TextField()
+    
 
     def image_url(self):
         return ('{ STATUS_URL }catalog/media/products/' + self.filename)
