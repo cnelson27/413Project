@@ -5,9 +5,9 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1549405345.0933855
+_modified_time = 1552336127.825268
 _enable_loop = True
-_template_filename = 'C:/Users/cnels/dmp_projects/Project1/homepage/templates/app_base.htm'
+_template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/homepage/templates/app_base.htm'
 _template_uri = 'app_base.htm'
 _source_encoding = 'utf-8'
 import django_mako_plus
@@ -30,12 +30,12 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        self = context.get('self', UNDEFINED)
+        def site_left():
+            return render_site_left(context._locals(__M_locals))
         request = context.get('request', UNDEFINED)
         def site_menu():
             return render_site_menu(context._locals(__M_locals))
-        def site_left():
-            return render_site_left(context._locals(__M_locals))
-        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'site_menu'):
@@ -55,16 +55,16 @@ def render_body(context,**pageargs):
 def render_site_menu(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        self = context.get('self', UNDEFINED)
         request = context.get('request', UNDEFINED)
         def site_menu():
             return render_site_menu(context)
-        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n    <li class="nav-item">\r\n        <a class="nav-link ')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( 'active' if request.dmp.page == 'contact' else '' ))
         __M_writer('" href="/contact/">Contact</a>\r\n    </li>\r\n    <li class="nav-item">\r\n        <a class="nav-link ')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( 'active' if request.dmp.page == 'about' else '' ))
-        __M_writer('" href="/about/">About</a>\r\n    </li>\r\n')
+        __M_writer('" href="/about/">About</a>\r\n    </li>\r\n    <li class="nav-item">\r\n        <a class="nav-link" href="/catalog/index/">Catalog</a>\r\n    </li>\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -84,6 +84,6 @@ def render_site_left(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/cnels/dmp_projects/Project1/homepage/templates/app_base.htm", "uri": "app_base.htm", "source_encoding": "utf-8", "line_map": {"29": 0, "40": 1, "45": 10, "55": 3, "63": 3, "64": 5, "65": 5, "66": 8, "67": 8, "73": 12, "79": 12, "85": 79}}
+{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/homepage/templates/app_base.htm", "uri": "app_base.htm", "source_encoding": "utf-8", "line_map": {"29": 0, "40": 1, "45": 13, "55": 3, "63": 3, "64": 5, "65": 5, "66": 8, "67": 8, "73": 15, "79": 15, "85": 79}}
 __M_END_METADATA
 """

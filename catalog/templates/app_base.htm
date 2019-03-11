@@ -1,5 +1,5 @@
 <%inherit file="/homepage/templates/base.htm" />
-<%! from catalog import models as cmod %>
+<%! from catalog import models as cmod /%>
 
 <%block name="site_menu">
     <li class="nav-item">
@@ -7,6 +7,9 @@
     </li>
     <li class="nav-item">
         <a class="nav-link ${ 'active' if request.dmp.page == 'about' else '' }" href="/about/">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/catalog/index/">Catalog</a>
     </li>
 </%block>
 
