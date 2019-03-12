@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1552420190.2073913
+_modified_time = 1552425767.8712337
 _enable_loop = True
 _template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/app_base.htm'
 _template_uri = 'app_base.htm'
@@ -33,12 +33,12 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def site_menu():
-            return render_site_menu(context._locals(__M_locals))
-        self = context.get('self', UNDEFINED)
+        request = context.get('request', UNDEFINED)
         def site_left():
             return render_site_left(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
+        self = context.get('self', UNDEFINED)
+        def site_menu():
+            return render_site_menu(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\r\n')
         __M_writer('\r\n\r\n')
@@ -59,10 +59,10 @@ def render_body(context,**pageargs):
 def render_site_menu(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        request = context.get('request', UNDEFINED)
+        self = context.get('self', UNDEFINED)
         def site_menu():
             return render_site_menu(context)
-        self = context.get('self', UNDEFINED)
-        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n    <li class="nav-item">\r\n        <a class="nav-link ')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( 'active' if request.dmp.page == 'contact' else '' ))
@@ -81,7 +81,7 @@ def render_site_left(context,**pageargs):
         def site_left():
             return render_site_left(context)
         __M_writer = context.writer()
-        __M_writer("\r\n    <div class='btn btn-primary'>Filter Results</div>\r\n    <ul>\r\n")
+        __M_writer("\r\n    <div class='btn btn-primary'>Filter Products</div>\r\n    <ul>\r\n")
         for c in cmod.Category.objects.all():
             __M_writer("            <li class='filter_list'><a class='filter_list' href='/catalog/index/")
             __M_writer(django_mako_plus.ExpressionPostProcessor(self)(c.id))

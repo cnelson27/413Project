@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1552088919.4862213
+_modified_time = 1552428736.5475123
 _enable_loop = True
 _template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/index.html'
 _template_uri = 'index.html'
@@ -33,9 +33,9 @@ def render_body(context,**pageargs):
         def title():
             return render_title(context._locals(__M_locals))
         self = context.get('self', UNDEFINED)
+        products = context.get('products', UNDEFINED)
         def site_center():
             return render_site_center(context._locals(__M_locals))
-        products = context.get('products', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
@@ -69,9 +69,9 @@ def render_site_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         self = context.get('self', UNDEFINED)
+        products = context.get('products', UNDEFINED)
         def site_center():
             return render_site_center(context)
-        products = context.get('products', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n    <div class="site_center"> \r\n        <h1 class="text-center">Products</h1>\r\n        <div id="catalog">\r\n')
         for product in products:

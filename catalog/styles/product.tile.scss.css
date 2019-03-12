@@ -1,0 +1,24 @@
+.product-tile {
+  margin: 5px;
+  display: inline-block;
+  max-width: 300px;
+  border: solid 1px black;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.product-image img {
+  width: 95%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.product-name {
+  text-align: center;
+}
+
+.product-price {
+  text-align: center;
+}
+
+/*# sourceMappingURL=product.tile.scss.css.map */
