@@ -1,5 +1,6 @@
 from django.db import models
 from catalog import models as cmod
+from Project1 import settings
 
 # Create your models here.
 
@@ -51,4 +52,4 @@ class ProductImage(models.Model):
     
 
     def image_url(self):
-        return ('{ STATUS_URL }catalog/media/products/' + self.filename)
+        return (settings.STATIC_URL + 'catalog/media/products/' + self.filename)

@@ -1,5 +1,6 @@
 <%inherit file="/homepage/templates/base.htm" />
-<%! from catalog import models as cmod /%>
+<%! from catalog import models as cmod 
+%>
 
 <%block name="site_menu">
     <li class="nav-item">
@@ -12,17 +13,13 @@
         <a class="nav-link" href="/catalog/index/">Catalog</a>
     </li>
 </%block>
-
 <%block name="site_left">
+    <div class='btn btn-primary'>Filter Results</div>
     <ul>
-        <li class="nav-item">
-            <a class="nav-link" href="index">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="contact">Contact</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="about">About</a>
-        </li>
+        %for c in cmod.Category.objects.all():
+            <li class='filter_list'><a class='filter_list' href='/catalog/index/${c.id}'>${c.name}</a></li>
+            <br />
+        %endfor
+            <li class='filter_list'><a class='filter_list' href='/catalog/index/'>All Products</a></li>
     </ul>
 </%block>

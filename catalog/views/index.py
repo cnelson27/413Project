@@ -11,12 +11,10 @@ ITEMS_PER_PAGE = 8
 @view_function
 def process_request(request, category:cmod.Category=None, page:int=1):
     products = cmod.Product.objects.filter(status="A")
-    print('>>>>>>>>>>', products)
     if category is not None:
         products = products.filter(category=category)
     products = products[(page - 1) * ITEMS_PER_PAGE: page * ITEMS_PER_PAGE]
 
-    print('>>>>>>>>>>', products)
     return request.dmp.render('index.html', {
         'category' : category,
         'products' : products,

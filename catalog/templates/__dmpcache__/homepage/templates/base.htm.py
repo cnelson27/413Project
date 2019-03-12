@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1551900737.337711
+_modified_time = 1552420684.0771194
 _enable_loop = True
 _template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/homepage/templates/base.htm'
 _template_uri = '/homepage/templates/base.htm'
@@ -22,22 +22,22 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        self = context.get('self', UNDEFINED)
         def site_right():
             return render_site_right(context._locals(__M_locals))
+        user = context.get('user', UNDEFINED)
+        def site_center():
+            return render_site_center(context._locals(__M_locals))
+        def title():
+            return render_title(context._locals(__M_locals))
         request = context.get('request', UNDEFINED)
-        self = context.get('self', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def site_menu():
             return render_site_menu(context._locals(__M_locals))
         def site_left():
             return render_site_left(context._locals(__M_locals))
-        def title():
-            return render_title(context._locals(__M_locals))
-        def site_center():
-            return render_site_center(context._locals(__M_locals))
-        user = context.get('user', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('<!DOCTYPE html>\r\n<html>\r\n    \r\n    <head>\r\n        <meta charset="UTF-8">\r\n        <meta name="viewport" content="width=device-width, initial-scale=1">\r\n\r\n        <title>Jedi &mdash; ')
+        __M_writer('<!DOCTYPE html>\r\n<html>\r\n    \r\n    <head>\r\n        <meta charset="UTF-8">\r\n        <meta name="viewport" content="width=device-width, initial-scale=1">\r\n\r\n        <title>Colby Nelson &mdash; ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
             context['self'].title(**pageargs)
         
@@ -62,7 +62,7 @@ def render_body(context,**pageargs):
         __M_writer('homepage/media/python.png">\r\n    </head>\r\n    <body>\r\n        <div id="maintenance_message" class="alert alert-danger">\r\n        <div id="maintenance_text">\r\n            Hey there, the server is going to be down tomorrow.\r\n        </div>\r\n        </div>\r\n        \r\n        <header>\r\n            <div>\r\n                <nav class="navbar">\r\n                    <ul class="nav nav-pills">\r\n                        <li class="nav-item" >\r\n                            <a class="nav-link" href="/" style="padding-top: 0; padding-bottom: 0;">\r\n                                <img src="')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( STATIC_URL ))
         __M_writer('homepage/media/python.png" alt="Site Logo" style="height: 40px; margin: 0;"/>\r\n                            </a>\r\n                        </li>\r\n                        <li class="nav-item ">\r\n                            <a class="nav-link ')
-        __M_writer(django_mako_plus.ExpressionPostProcessor(self)( 'active' if request.dmp.page == 'index' else '' ))
+        __M_writer(django_mako_plus.ExpressionPostProcessor(self)( 'active' if (request.dmp.app == 'homepage' and request.dmp.page == 'index') else '' ))
         __M_writer('" href="/">Home</a>\r\n                        </li>\r\n                        ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'site_menu'):
             context['self'].site_menu(**pageargs)

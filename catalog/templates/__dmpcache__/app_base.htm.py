@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1552177696.1945527
+_modified_time = 1552420190.2073913
 _enable_loop = True
 _template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/app_base.htm'
 _template_uri = 'app_base.htm'
@@ -16,6 +16,7 @@ _exports = ['site_menu', 'site_left']
 
 
 from catalog import models as cmod 
+
 
 def _mako_get_namespace(context, name):
     try:
@@ -32,12 +33,12 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        request = context.get('request', UNDEFINED)
-        self = context.get('self', UNDEFINED)
         def site_menu():
             return render_site_menu(context._locals(__M_locals))
+        self = context.get('self', UNDEFINED)
         def site_left():
             return render_site_left(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n')
         __M_writer('\r\n\r\n')
@@ -45,7 +46,7 @@ def render_body(context,**pageargs):
             context['self'].site_menu(**pageargs)
         
 
-        __M_writer('\r\n\r\n')
+        __M_writer('\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'site_left'):
             context['self'].site_left(**pageargs)
         
@@ -58,16 +59,16 @@ def render_body(context,**pageargs):
 def render_site_menu(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        request = context.get('request', UNDEFINED)
         def site_menu():
             return render_site_menu(context)
         self = context.get('self', UNDEFINED)
+        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n    <li class="nav-item">\r\n        <a class="nav-link ')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( 'active' if request.dmp.page == 'contact' else '' ))
         __M_writer('" href="/contact/">Contact</a>\r\n    </li>\r\n    <li class="nav-item">\r\n        <a class="nav-link ')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( 'active' if request.dmp.page == 'about' else '' ))
-        __M_writer('" href="/about/">About</a>\r\n    </li>\r\n')
+        __M_writer('" href="/about/">About</a>\r\n    </li>\r\n    <li class="nav-item">\r\n        <a class="nav-link" href="/catalog/index/">Catalog</a>\r\n    </li>\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -76,10 +77,18 @@ def render_site_menu(context,**pageargs):
 def render_site_left(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        self = context.get('self', UNDEFINED)
         def site_left():
             return render_site_left(context)
         __M_writer = context.writer()
-        __M_writer('\r\n    <ul>\r\n        <li class="nav-item">\r\n            <a class="nav-link" href="index">Home</a>\r\n        </li>\r\n        <li class="nav-item">\r\n            <a class="nav-link" href="contact">Contact</a>\r\n        </li>\r\n        <li class="nav-item">\r\n            <a class="nav-link" href="about">About</a>\r\n        </li>\r\n    </ul>\r\n')
+        __M_writer("\r\n    <div class='btn btn-primary'>Filter Results</div>\r\n    <ul>\r\n")
+        for c in cmod.Category.objects.all():
+            __M_writer("            <li class='filter_list'><a class='filter_list' href='/catalog/index/")
+            __M_writer(django_mako_plus.ExpressionPostProcessor(self)(c.id))
+            __M_writer("'>")
+            __M_writer(django_mako_plus.ExpressionPostProcessor(self)(c.name))
+            __M_writer('</a></li>\r\n            <br />\r\n')
+        __M_writer("            <li class='filter_list'><a class='filter_list' href='/catalog/index/'>All Products</a></li>\r\n    </ul>\r\n")
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -87,6 +96,6 @@ def render_site_left(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/app_base.htm", "uri": "app_base.htm", "source_encoding": "utf-8", "line_map": {"18": 2, "31": 0, "42": 1, "43": 2, "48": 11, "58": 4, "66": 4, "67": 6, "68": 6, "69": 9, "70": 9, "76": 13, "82": 13, "88": 82}}
+{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/app_base.htm", "uri": "app_base.htm", "source_encoding": "utf-8", "line_map": {"18": 2, "32": 0, "43": 1, "44": 3, "49": 15, "59": 5, "67": 5, "68": 7, "69": 7, "70": 10, "71": 10, "77": 16, "84": 16, "85": 19, "86": 20, "87": 20, "88": 20, "89": 20, "90": 20, "91": 23, "97": 91}}
 __M_END_METADATA
 """
