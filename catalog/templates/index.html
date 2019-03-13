@@ -12,4 +12,17 @@
             %endfor
         </div>
     </div>
+    %if category is None:
+    <div class="flex-box justify-content-center">
+        <a href="/catalog/index/0/${ page - 1 }" class="previous round ${ 'disabled' if (page <= 1) else '' }">&#8249;</a>
+        <a href="/catalog/index/0/${ page + 1 }" class="next round ${ 'disabled' if (page >= numpages) else '' }">&#8250;</a>
+    </div>
+    %else:
+    <div class="flex-box justify-content-center">
+        <a href="/catalog/index/${ category.id }/${ page - 1 }" class="previous round ${ 'disabled' if (page <= 1) else '' }">&#8249;</a>
+        <a href="/catalog/index/${ category.id }/${ page + 1 }" class="next round ${ 'disabled' if (page >= numpages) else '' }">&#8250;</a>
+    </div>
+    %endif  
+
+    
 </%block>

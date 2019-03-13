@@ -40,8 +40,8 @@ class Product(models.Model):
         urls = []
         for pi in ProductImage.objects.filter(product=self):
             urls.append(pi.image_url())
-        if (urls is None):
-            urls.append()
+        if len(urls) == 0:
+            urls.append(settings.STATIC_URL + 'catalog/media/products/notfound.jpg')
         return urls
 
 
