@@ -1,6 +1,24 @@
 <%inherit file="app_base.htm" />
 
-
 <%block name="site_center">
-
+    <div class="container row">
+        <div class="col-1 thumbnail_div">
+            %for url in thumbnails:
+                <div class="thumbnail_pic">
+                    <img src="${ url }" alt="${ product.name } Image" />
+                </div>
+            %endfor
+        </div>
+        <div class="col-4 featured_pic">
+            <img src="${ featured }" alt="${ product.name } Image" />
+        </div>
+        <div class="col-7 product_details">
+            <h1>${product.name}</h1>
+            <br />
+            <p><b>Category:</b> <a href='/catalog/index/${product.category.id}'>${ product.category.name }</a></p>
+            <p><b>Price:</b> ${product.price}</p>
+            <p><b>Quantity In Stock:</b> ${ product.quantity }</p>
+            <p><b>Description:</b> ${product.description}</p>
+        </div>
+    </div>
 </%block>

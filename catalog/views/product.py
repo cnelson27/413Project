@@ -6,8 +6,13 @@ from catalog import models as cmod
 @view_function
 def process_request(request, product):
     theproduct = cmod.Product.objects.get(id=product)
+    thumbnails = theproduct.image_urls()
+    featured = thumbnails[0]
+    del thumbnails[0]
     return request.dmp.render('product.html', {
         'product' : theproduct,
+        'thumbnails' : thumbnails,
+        'featured' : featured,
     })
 
 
