@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1552428736.5475123
+_modified_time = 1552430329.793273
 _enable_loop = True
 _template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/index.html'
 _template_uri = 'index.html'
@@ -30,10 +30,10 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        products = context.get('products', UNDEFINED)
         def title():
             return render_title(context._locals(__M_locals))
         self = context.get('self', UNDEFINED)
-        products = context.get('products', UNDEFINED)
         def site_center():
             return render_site_center(context._locals(__M_locals))
         __M_writer = context.writer()
@@ -68,14 +68,14 @@ def render_title(context,**pageargs):
 def render_site_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        self = context.get('self', UNDEFINED)
         products = context.get('products', UNDEFINED)
+        self = context.get('self', UNDEFINED)
         def site_center():
             return render_site_center(context)
         __M_writer = context.writer()
-        __M_writer('\r\n    <div class="site_center"> \r\n        <h1 class="text-center">Products</h1>\r\n        <div id="catalog">\r\n')
+        __M_writer('\r\n    <div class="container site_center"> \r\n        <h1 class="text-center">Products</h1>\r\n        <div class="row" id="catalog">\r\n')
         for product in products:
-            __M_writer('                <span class="product-container" data-product-id="')
+            __M_writer('                <span class="col-3 product-container" data-product-id="')
             __M_writer(django_mako_plus.ExpressionPostProcessor(self)( product.id ))
             __M_writer('"></span>\r\n')
         __M_writer('        </div>\r\n    </div>\r\n')

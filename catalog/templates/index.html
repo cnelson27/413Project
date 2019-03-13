@@ -4,11 +4,11 @@
     Products
 </%block>
 <%block name="site_center">
-    <div class="site_center"> 
+    <div class="container site_center"> 
         <h1 class="text-center">Products</h1>
-        <div id="catalog">
+        <div class="row" id="catalog">
             %for product in products:
-                <span class="product-container" data-product-id="${ product.id }"></span>
+                <span class="col-3 product-container" data-product-id="${ product.id }"></span>
             %endfor
         </div>
     </div>

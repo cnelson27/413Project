@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1552429452.1182559
+_modified_time = 1552430393.9404814
 _enable_loop = True
 _template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/product.tile.html'
 _template_uri = 'product.tile.html'
@@ -30,10 +30,10 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        product = context.get('product', UNDEFINED)
-        self = context.get('self', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        self = context.get('self', UNDEFINED)
+        product = context.get('product', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -48,10 +48,10 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        product = context.get('product', UNDEFINED)
-        self = context.get('self', UNDEFINED)
         def content():
             return render_content(context)
+        self = context.get('self', UNDEFINED)
+        product = context.get('product', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n    <a href="/catalog/product/')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( product.id ))

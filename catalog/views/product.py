@@ -5,24 +5,15 @@ from catalog import models as cmod
 
 @view_function
 def process_request(request, product):
-    
+    theproduct = cmod.Product.objects.get(id=product)
     return request.dmp.render('product.html', {
-        'product' : product,
+        'product' : theproduct,
     })
 
 
 @view_function
 def tile(request, product):
     theproduct = cmod.Product.objects.get(id=product)
-    print(theproduct)
-    print(theproduct)
-    print(theproduct)
-    print(theproduct)
-    print(product)
-    print(product)
-    print(product)
-    print(product)
-    print(product)
     return request.dmp.render('product.tile.html', {
         'product' : theproduct,
     })
