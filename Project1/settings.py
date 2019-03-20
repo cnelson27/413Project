@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import shutil
+import stripe
+
+# Stripe Keys
+stripe.api_key = "sk_test_uOcFBMBUe1frNFYhCLxswEJL008dUH051r"
+STRIPE_API_KEY = "sk_test_uOcFBMBUe1frNFYhCLxswEJL008dUH051r"
+STRIPE_PUBLISHABLE_KEY = "pk_test_JC0rgChjbyRKhF8b3D4eafu600iOpEJn5U"
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
