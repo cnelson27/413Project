@@ -5,14 +5,14 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1553538108.5491474
+_modified_time = 1553548456.760182
 _enable_loop = True
 _template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/product.html'
 _template_uri = 'product.html'
 _source_encoding = 'utf-8'
 import django_mako_plus
 import django.utils.html
-_exports = ['site_center']
+_exports = ['title', 'site_center']
 
 
 def _mako_get_namespace(context, name):
@@ -30,14 +30,21 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        self = context.get('self', UNDEFINED)
         def site_center():
             return render_site_center(context._locals(__M_locals))
         product = context.get('product', UNDEFINED)
+        def title():
+            return render_title(context._locals(__M_locals))
         thumbnails = context.get('thumbnails', UNDEFINED)
         form = context.get('form', UNDEFINED)
-        self = context.get('self', UNDEFINED)
         featured = context.get('featured', UNDEFINED)
         __M_writer = context.writer()
+        __M_writer('\r\n\r\n')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
+            context['self'].title(**pageargs)
+        
+
         __M_writer('\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'site_center'):
             context['self'].site_center(**pageargs)
@@ -49,15 +56,29 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_title(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        self = context.get('self', UNDEFINED)
+        def title():
+            return render_title(context)
+        product = context.get('product', UNDEFINED)
+        __M_writer = context.writer()
+        __M_writer(django_mako_plus.ExpressionPostProcessor(self)( product.name ))
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_site_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        self = context.get('self', UNDEFINED)
         def site_center():
             return render_site_center(context)
         product = context.get('product', UNDEFINED)
         thumbnails = context.get('thumbnails', UNDEFINED)
         form = context.get('form', UNDEFINED)
-        self = context.get('self', UNDEFINED)
         featured = context.get('featured', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n    <div class="container row">\r\n        <div class="col-1 thumbnail_div">\r\n')
@@ -79,7 +100,7 @@ def render_site_center(context,**pageargs):
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( product.quantity ))
         __M_writer('</p>\r\n            <form method="post">\r\n                <table class="buyTable">\r\n                    ')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( form.as_table() ))
-        __M_writer('\r\n                </table>\r\n            <input class="btn btn-primary buyBtn" type="submit" value="Buy Now">\r\n            </form>\r\n')
+        __M_writer('\r\n                </table>\r\n            <input class="btn btn-primary" type="submit" value="Buy Now">\r\n            </form>\r\n')
         __M_writer("            <br />\r\n            <p><b>Category:</b> <a href='/catalog/index/")
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)(product.category.id))
         __M_writer("'>")
@@ -94,6 +115,6 @@ def render_site_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/product.html", "uri": "product.html", "source_encoding": "utf-8", "line_map": {"29": 0, "41": 1, "46": 32, "52": 3, "63": 3, "64": 6, "65": 7, "66": 8, "67": 8, "68": 8, "69": 8, "70": 11, "71": 13, "72": 13, "73": 13, "74": 13, "75": 16, "76": 16, "77": 17, "78": 17, "79": 18, "80": 18, "81": 21, "82": 21, "83": 27, "84": 28, "85": 28, "86": 28, "87": 28, "88": 29, "89": 29, "95": 89}}
+{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/catalog/templates/product.html", "uri": "product.html", "source_encoding": "utf-8", "line_map": {"29": 0, "43": 1, "48": 3, "53": 34, "59": 3, "67": 3, "73": 5, "84": 5, "85": 8, "86": 9, "87": 10, "88": 10, "89": 10, "90": 10, "91": 13, "92": 15, "93": 15, "94": 15, "95": 15, "96": 18, "97": 18, "98": 19, "99": 19, "100": 20, "101": 20, "102": 23, "103": 23, "104": 29, "105": 30, "106": 30, "107": 30, "108": 30, "109": 31, "110": 31, "116": 110}}
 __M_END_METADATA
 """

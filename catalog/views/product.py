@@ -3,6 +3,7 @@ from django_mako_plus import view_function, jscontext
 from django.core.exceptions import ValidationError
 from catalog import models as cmod
 from django import forms
+from account import models as amod
 
 @view_function
 def process_request(request, product):
@@ -12,17 +13,33 @@ def process_request(request, product):
     del thumbnails[0]
     if request.method == "POST":
         form = buyForm(request.POST)
+        form.user = request.user
+        form.product = cmod.Product.objects.get(id=product)
+        if request.user.is_authenticated == False:
+            return HttpResponseRedirect('/account/login/')
         if form.is_valid():
-            return HttpResponseRedirect('/catalog/cart/')
+            cart = request.user.get_shopping_cart()
+            item = cmod.SaleItem()
+            item.status = "A"
+            item.product = theproduct
+            item.price = theproduct.price
+            item.sale = cart
+            item.quantity = form.cleaned_data.get('quantity')
+            item.save()
+            # If form is valid, create or get the user's 
+            # shopping cart Sale object (purchased=None), 
+            # add a SaleItem record, and 
+            return HttpResponseRedirect('/catalog/cart/', {
+                'cart' : cart,
+            })
         # check all the variables
         # we assume the user does it wrong
-        print(request.POST["yourQuantity"])
-        print(request.user.name)
         # if user did do it right:
         # do the work (reset password, create account, finalize the sale)
         #return HttpResponseRedirect(homepage/contact/)
     else: 
         form = buyForm()
+        form.product = product
     return request.dmp.render('product.html', {
         'product' : theproduct,
         'thumbnails' : thumbnails,
@@ -39,12 +56,15 @@ def tile(request, product):
     })
 
 class buyForm(forms.Form):
-    quantity = forms.CharField(label='Quantity')
+    quantity = forms.IntegerField(label='Quantity')
+    product = forms.HiddenInput
 
-        
     def clean(self):
-        if user is None:
-            raise forms.ValidationError('Invalid username or password')
+        quantity=self.cleaned_data.get('quantity')
+        if quantity > self.product.quantity:
+            raise forms.ValidationError('Quantity not available')
+        if quantity <= 0:
+            raise forms.ValidationError('Please enter a positive quantity')
         return self.cleaned_data
 
 

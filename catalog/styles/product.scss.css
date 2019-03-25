@@ -37,15 +37,6 @@
   line-height: 20px;
 }
 
-.buyTable {
-  display: inline;
-  margin-right: 20px;
-}
-
-.buyBtn {
-  float: top;
-}
-
 .buyTable tbody tr th label {
   margin-bottom: 0px;
   margin-right: 5px;

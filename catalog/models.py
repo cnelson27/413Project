@@ -71,11 +71,11 @@ class Sale(models.Model):
 
     def recalculate(self):
         saleItems = SaleItem.objects.filter(sale=self, status='A')
-        self.subtotal = 0
+        self.subtotal = Decimal("0")
         for saleItem in saleItems:
             self.subtotal += saleItem.price
-        self.tax = self.subtotal * TAX_RATE
-        self.total = self.subtotal + self.tax
+        self.tax = Decimal(self.subtotal * TAX_RATE)
+        self.total = Decimal(self.subtotal + self.tax)
         '''Recalculates the subtotal, tax, and total fields. Does not save the object.'''
         # complete this method!
 
