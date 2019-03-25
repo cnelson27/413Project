@@ -32,4 +32,27 @@
   margin-bottom: 5px;
 }
 
+.buyTable tbody tr td input {
+  width: 40px;
+  line-height: 20px;
+}
+
+.buyTable {
+  display: inline;
+  margin-right: 20px;
+}
+
+.buyBtn {
+  float: top;
+}
+
+.buyTable tbody tr th label {
+  margin-bottom: 0px;
+  margin-right: 5px;
+}
+
+.buyQuantityField {
+  margin-right: 20px;
+}
+
 /*# sourceMappingURL=product.scss.css.map */

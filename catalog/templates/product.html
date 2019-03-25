@@ -14,10 +14,18 @@
         </div>
         <div class="col-7 product_details">
             <h1>${product.name}</h1>
-            <br />
-            <p><b>Category:</b> <a href='/catalog/index/${product.category.id}'>${ product.category.name }</a></p>
             <p><b>Price:</b> ${product.price}</p>
             <p><b>Quantity In Stock:</b> ${ product.quantity }</p>
+            <form method="post">
+                <table class="buyTable">
+                    ${ form.as_table() }
+                </table>
+            <input class="btn btn-primary" type="submit" value="Buy Now">
+            </form>
+                ## <input class="buyQuantityField col-1 input-lg" type="text" id="qty" name="yourQuantity" />
+                ## <input class="btn btn-primary" type="submit" value="Buy Now"/>
+            <br />
+            <p><b>Category:</b> <a href='/catalog/index/${product.category.id}'>${ product.category.name }</a></p>
             <p><b>Description:</b> ${product.description}</p>
         </div>
     </div>
