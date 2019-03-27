@@ -70,10 +70,11 @@ class Sale(models.Model):
     charge_id = models.TextField(null=True, default=None)   # successful charge id from stripe
 
     def recalculate(self):
-        saleItems = SaleItem.objects.filter(sale=self, status='A')
+        
         self.subtotal = Decimal("0")
+        saleItems = SaleItem.objects.filter(sale=self, status='A')
         for saleItem in saleItems:
-            self.subtotal += saleItem.price
+            self.subtotal += (saleItem.price * saleItem.quantity)
         self.tax = Decimal(self.subtotal * TAX_RATE)
         self.total = Decimal(self.subtotal + self.tax)
         '''Recalculates the subtotal, tax, and total fields. Does not save the object.'''
@@ -87,7 +88,7 @@ class Sale(models.Model):
         for saleItem in saleItems:
             if saleItem.quantity > saleItem.product.quantity:
                 raise ValueError(saleItem.product.name + ' only has ' + saleItem.product.quantity + ' in stock.')
-        self.recalculate(self)
+        self.recalculate()
         # charge = stripe.Charge.retrieve(
         #     ,
         #     STRIPE_API_KEY

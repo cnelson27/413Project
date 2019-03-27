@@ -19,12 +19,7 @@ def process_request(request, product):
             return HttpResponseRedirect('/account/login/')
         if form.is_valid():
             cart = request.user.get_shopping_cart()
-            cartItems = cmod.SaleItem.objects.filter(sale=cart)
-            cartItem = None
-            for item in cartItems:
-                if item.product == theproduct:
-                    cartItem = item
-            if cartItem is None:
+            if not cmod.SaleItem.objects.filter(sale=cart,product=theproduct).exists():
                 cartItem = cmod.SaleItem()
                 cartItem.status = "A"
                 cartItem.product = theproduct
@@ -33,21 +28,14 @@ def process_request(request, product):
                 cartItem.quantity = form.cleaned_data.get('quantity')
                 cartItem.save()
             else:
-                cartItem.quantity = form.cleaned_data.get('quantity')
+                cartItem = cmod.SaleItem.objects.get(sale=cart, product=theproduct)
+                if cartItem.status =='A':
+                    cartItem.quantity += form.cleaned_data.get('quantity')
+                else:
+                    cartItem.status = 'A'
+                    cartItem.quantity = form.cleaned_data.get('quantity')
                 cartItem.save()
-
-            
-            # If form is valid, create or get the user's 
-            # shopping cart Sale object (purchased=None), 
-            # add a SaleItem record, and 
-            return HttpResponseRedirect('/catalog/cart/', {
-                'cart' : cart,
-            })
-        # check all the variables
-        # we assume the user does it wrong
-        # if user did do it right:
-        # do the work (reset password, create account, finalize the sale)
-        #return HttpResponseRedirect(homepage/contact/)
+            return HttpResponseRedirect('/catalog/cart/')
     else: 
         form = buyForm()
         form.product = product
@@ -68,7 +56,6 @@ def tile(request, product):
 
 class buyForm(forms.Form):
     quantity = forms.IntegerField(label='Quantity')
-    product = forms.HiddenInput
 
     def clean(self):
         quantity=self.cleaned_data.get('quantity')
