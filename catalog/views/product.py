@@ -19,13 +19,19 @@ def process_request(request, product):
             return HttpResponseRedirect('/account/login/')
         if form.is_valid():
             cart = request.user.get_shopping_cart()
-            item = cmod.SaleItem()
-            item.status = "A"
-            item.product = theproduct
-            item.price = theproduct.price
-            item.sale = cart
-            item.quantity = form.cleaned_data.get('quantity')
-            item.save()
+            item = cmod.SaleItem.objects.get(id=product.id)
+            if item is None:
+                item = cmod.SaleItem()
+                item.status = "A"
+                item.product = theproduct
+                item.price = theproduct.price
+                item.sale = cart
+                item.quantity = form.cleaned_data.get('quantity')
+                item.save()
+            else:
+                item.quantity = form.cleaned_data.get('quantity')
+
+            
             # If form is valid, create or get the user's 
             # shopping cart Sale object (purchased=None), 
             # add a SaleItem record, and 
