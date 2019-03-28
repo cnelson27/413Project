@@ -1,0 +1,17 @@
+.address_table {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.address_table tbody tr td input {
+  width: 100%;
+  line-height: 20px;
+}
+
+.checkoutTotal {
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+/*# sourceMappingURL=checkout.scss.css.map */

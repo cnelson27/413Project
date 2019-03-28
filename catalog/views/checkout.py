@@ -7,17 +7,27 @@ from account import models as amod
 
 @view_function
 def process_request(request):
+    if request.user.is_authenticated == True:
+        cart = request.user.get_shopping_cart()
+        cart.recalculate()
+
     if request.method == "POST":
         form = addressForm(request.POST)
         if request.user.is_authenticated == False:
             return HttpResponseRedirect('/account/login/')
         if form.is_valid():
+            cart = request.user.get_shopping_cart()
+            cart.recalculate()
+            cart.finalize()
             return HttpResponseRedirect('/catalog/cart/')
+            
+
     else: 
         form = addressForm()
 
     return request.dmp.render('checkout.html', {
         'form' : form,
+        'cart' : cart,
     })
 
 class addressForm(forms.Form):
@@ -25,6 +35,7 @@ class addressForm(forms.Form):
     city = forms.CharField(label="City")
     state = forms.CharField(label="State")
     zip = forms.CharField(label="Zipcode")
+    stripeToken = forms.CharField(widget=forms.HiddenInput())
 
     def clean(self):
         try:

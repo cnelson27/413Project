@@ -1,0 +1,22 @@
+<%inherit file="app_base.htm" />
+
+<%block name="title">Checkout</%block>
+
+<%block name="site_center">
+    <form method="post">
+        <table class="table table-striped table-bordered address_table">
+            ${ form.as_table() }
+        </table>
+        <span class="checkoutTotal">Total: $${ cart.total }</span>
+        <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="${ settings.STRIPE_PUBLISHABLE_KEY }"
+            data-amount="${ cart.total * 100 }"
+            data-name="Demo Site"
+            data-description="Widget"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto"
+            data-zip-code="auto">
+        </script>
+    </form>
+</%block>

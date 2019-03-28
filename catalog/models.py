@@ -95,6 +95,9 @@ class Sale(models.Model):
         # )
         # charge.save()
         self.purchased = datetime.datetime.now()
+        self.charge_id = stripeToken
+        self.save()
+        
         for saleItem in saleItems:
             saleItem.product.quantity -= saleItem.quantity
             saleItem.product.save()

@@ -10,7 +10,7 @@
         <a class="nav-link ${ 'active' if request.dmp.page == 'about' else '' }" href="/about/">About</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/catalog/index/">Catalog</a>
+        <a class="nav-link ${ 'active' if request.dmp.page == 'index' else '' }" href="/catalog/index/">Catalog</a>
     </li>
 </%block>
 <%block name="site_left">
