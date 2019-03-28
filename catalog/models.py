@@ -75,8 +75,8 @@ class Sale(models.Model):
         saleItems = SaleItem.objects.filter(sale=self, status='A')
         for saleItem in saleItems:
             self.subtotal += (saleItem.price * saleItem.quantity)
-        self.tax = Decimal(self.subtotal * TAX_RATE)
-        self.total = Decimal(self.subtotal + self.tax)
+        self.tax = Decimal(str(self.subtotal * TAX_RATE)).quantize(Decimal('0.01'))
+        self.total = Decimal(str(self.subtotal + self.tax)).quantize(Decimal('0.01'))
         '''Recalculates the subtotal, tax, and total fields. Does not save the object.'''
         # complete this method!
 

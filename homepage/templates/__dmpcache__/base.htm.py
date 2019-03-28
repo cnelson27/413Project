@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1553539736.1248028
+_modified_time = 1553732718.316569
 _enable_loop = True
 _template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/homepage/templates/base.htm'
 _template_uri = 'base.htm'
@@ -22,20 +22,20 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def title():
-            return render_title(context._locals(__M_locals))
-        user = context.get('user', UNDEFINED)
-        def site_menu():
-            return render_site_menu(context._locals(__M_locals))
         def site_right():
             return render_site_right(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
-        def site_left():
-            return render_site_left(context._locals(__M_locals))
         def site_center():
             return render_site_center(context._locals(__M_locals))
+        user = context.get('user', UNDEFINED)
         self = context.get('self', UNDEFINED)
+        def site_left():
+            return render_site_left(context._locals(__M_locals))
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def title():
+            return render_title(context._locals(__M_locals))
+        def site_menu():
+            return render_site_menu(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('<!DOCTYPE html>\r\n<html>\r\n    \r\n    <head>\r\n        <meta charset="UTF-8">\r\n        <meta name="viewport" content="width=device-width, initial-scale=1">\r\n\r\n        <title>Colby Nelson &mdash; ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
@@ -77,7 +77,7 @@ def render_body(context,**pageargs):
             __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['u'] if __M_key in __M_locals_builtin_stored]))
             __M_writer('\r\n                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ')
             __M_writer(django_mako_plus.ExpressionPostProcessor(self)( u ))
-            __M_writer('!</a>\r\n                                <div class="dropdown-menu">\r\n                                    <a class="dropdown-item" href="/account/logout/">Logout</a>\r\n                                </div>\r\n                            </li>\r\n                            \r\n')
+            __M_writer('!</a>\r\n                                <div class="dropdown-menu">\r\n                                    <a class="dropdown-item" href="/catalog/cart/">View Cart</a>\r\n                                    <a class="dropdown-item" href="/account/logout/">Logout</a>\r\n                                </div>\r\n                            </li>\r\n                            \r\n')
         else:
             __M_writer('                            <li class="nav-item account">\r\n                                <a class="nav-link ')
             __M_writer(django_mako_plus.ExpressionPostProcessor(self)( 'active' if request.dmp.page == 'login' else '' ))
@@ -167,6 +167,6 @@ def render_site_right(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/homepage/templates/base.htm", "uri": "base.htm", "source_encoding": "utf-8", "line_map": {"18": 88, "21": 0, "40": 2, "45": 9, "46": 12, "47": 12, "48": 12, "49": 13, "50": 13, "51": 14, "52": 14, "53": 15, "54": 15, "55": 16, "56": 16, "57": 19, "58": 20, "59": 20, "60": 24, "61": 24, "62": 24, "63": 39, "64": 39, "69": 46, "70": 48, "71": 49, "72": 50, "78": 52, "79": 53, "80": 53, "81": 59, "82": 60, "83": 61, "84": 61, "85": 64, "90": 73, "95": 78, "100": 83, "101": 89, "102": 90, "103": 90, "109": 9, "120": 45, "126": 45, "132": 71, "138": 71, "144": 76, "150": 76, "156": 81, "162": 81, "168": 162}}
+{"filename": "C:/Users/Colby Nelson/dmp_projects/Project1/homepage/templates/base.htm", "uri": "base.htm", "source_encoding": "utf-8", "line_map": {"18": 89, "21": 0, "40": 2, "45": 9, "46": 12, "47": 12, "48": 12, "49": 13, "50": 13, "51": 14, "52": 14, "53": 15, "54": 15, "55": 16, "56": 16, "57": 19, "58": 20, "59": 20, "60": 24, "61": 24, "62": 24, "63": 39, "64": 39, "69": 46, "70": 48, "71": 49, "72": 50, "78": 52, "79": 53, "80": 53, "81": 60, "82": 61, "83": 62, "84": 62, "85": 65, "90": 74, "95": 79, "100": 84, "101": 90, "102": 91, "103": 91, "109": 9, "120": 45, "126": 45, "132": 72, "138": 72, "144": 77, "150": 77, "156": 82, "162": 82, "168": 162}}
 __M_END_METADATA
 """
