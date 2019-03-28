@@ -89,15 +89,24 @@ class Sale(models.Model):
             if saleItem.quantity > saleItem.product.quantity:
                 raise ValueError(saleItem.product.name + ' only has ' + saleItem.product.quantity + ' in stock.')
         self.recalculate()
-        # charge = stripe.Charge.retrieve(
-        #     ,
-        #     STRIPE_API_KEY
+        charge = stripe.Charge.create(
+            amount = int(self.total * 100),
+            currency='usd',
+            description='Example charge',
+            source=stripeToken,
+        )
+        # charge = stripe.Charge.create(
+        #     amount=999,
+        #     currency='usd',
+        #     description='Example charge',
+        #     source=token,
         # )
-        # charge.save()
-        self.purchased = datetime.datetime.now()
         self.charge_id = stripeToken
-        self.save()
+        charge.save()
+        self.purchased = datetime.datetime.now()
         
+        self.save()
+
         for saleItem in saleItems:
             saleItem.product.quantity -= saleItem.quantity
             saleItem.product.save()

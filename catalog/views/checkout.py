@@ -15,13 +15,11 @@ def process_request(request):
         form = addressForm(request.POST)
         if request.user.is_authenticated == False:
             return HttpResponseRedirect('/account/login/')
-        if form.is_valid():
-            cart = request.user.get_shopping_cart()
-            cart.recalculate()
-            cart.finalize()
-            return HttpResponseRedirect('/catalog/cart/')
-            
 
+        cart = request.user.get_shopping_cart()
+        form.sale = cart
+        if form.is_valid():
+            return HttpResponseRedirect('/catalog/receipt/')
     else: 
         form = addressForm()
 
