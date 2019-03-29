@@ -11,17 +11,17 @@
     pk: 2
     fields: {category: 1, last_modified: ! '2019-03-09 17:28:15.976007', status: A,
         name: Piano, description: The best Piano on the market!, price: '800.85',
-        quantity: 0, reorder_trigger: 2, reorder_quantity: 5}
+        quantity: 12, reorder_trigger: 2, reorder_quantity: 5}
 -   model: catalog.product
     pk: 3
     fields: {category: 1, last_modified: ! '2019-03-09 17:28:16.012192', status: A,
         name: Violin, description: The best Violin on the market!, price: '800.85',
-        quantity: 0, reorder_trigger: 2, reorder_quantity: 5}
+        quantity: 25, reorder_trigger: 2, reorder_quantity: 5}
 -   model: catalog.product
     pk: 4
     fields: {category: 1, last_modified: ! '2019-03-09 17:28:16.020749', status: A,
         name: Cello, description: The best Cello on the market!, price: '800.85',
-        quantity: 0, reorder_trigger: 2, reorder_quantity: 5}
+        quantity: 20, reorder_trigger: 2, reorder_quantity: 5}
 -   model: catalog.product
     pk: 5
     fields: {category: 1, last_modified: ! '2019-03-09 17:28:16.020749', status: A,
