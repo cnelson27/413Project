@@ -101,7 +101,7 @@ class Sale(models.Model):
         #     description='Example charge',
         #     source=token,
         # )
-        self.charge_id = stripeToken
+        self.charge_id = charge.id
         charge.save()
         self.purchased = datetime.datetime.now()
         

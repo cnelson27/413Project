@@ -1,0 +1,16 @@
+.receipt_header {
+  text-align: left;
+}
+
+.receipt_subheader {
+  text-align: left;
+  float: left;
+}
+
+.cartThumbnail {
+  max-width: 100px;
+  max-height: 100px;
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=receipt.scss.css.map */

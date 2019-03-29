@@ -1,0 +1,20 @@
+<%inherit file="app_base.htm" />
+
+<%block name="title">Purchases</%block>
+
+<%block name="site_center">
+    <h2>Purchases:</h2>
+    <br />
+    <table class="table table-striped">
+        <tr>
+            <th>Purchase Number</th>
+            <th>Purchase Date</th>
+        <tr>
+        %for purchase in sales:
+            <tr>
+                <td><a href='/catalog/receipt/${ purchase.id }'>${ purchase.id }</a></td>
+                <td>${ purchase.purchased}</td>
+            </tr>
+        %endfor
+    </table>
+</%block>

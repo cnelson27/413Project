@@ -19,7 +19,7 @@ def process_request(request):
         cart = request.user.get_shopping_cart()
         form.sale = cart
         if form.is_valid():
-            return HttpResponseRedirect('/catalog/receipt/')
+            return HttpResponseRedirect('/catalog/receipt/' + str(cart.id))
     else: 
         form = addressForm()
 
