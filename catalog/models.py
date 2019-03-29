@@ -89,7 +89,7 @@ class Sale(models.Model):
         saleItems = SaleItem.objects.filter(sale=self, status='A')
         for saleItem in saleItems:
             if saleItem.quantity > saleItem.product.quantity:
-                raise ValueError(saleItem.product.name + ' only has ' + saleItem.product.quantity + ' in stock.')
+                raise ValueError(saleItem.product.name + ': We only have ' + str(saleItem.product.quantity) + ' in stock.')
         self.recalculate()
         charge = stripe.Charge.create(
             amount = int(self.total * 100),
