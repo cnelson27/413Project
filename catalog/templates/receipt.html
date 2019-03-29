@@ -4,7 +4,7 @@
 
 <%block name="site_center">
     <h2 class="receipt_header">Receipt #${ sale.id }</h2>
-    <span class="receipt_subheader">Purchased: ${ sale.purchased }</span>
+    <span class="receipt_subheader">Purchased: ${ sale.purchased.strftime('%m-%d-%Y') }</span>
     <br />
     <table class="table table-striped table-bordered">
         <tr>

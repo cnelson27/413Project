@@ -1,19 +1,19 @@
 <%inherit file="app_base.htm" />
 
-<%block name="title">Purchases</%block>
+<%block name="title">Orders</%block>
 
 <%block name="site_center">
-    <h2>Purchases:</h2>
+    <h2>My Orders:</h2>
     <br />
-    <table class="table table-striped">
+    <table class="table table-striped order_table">
         <tr>
-            <th>Purchase Number</th>
-            <th>Purchase Date</th>
+            <th class="table_header">Purchase Number</th>
+            <th class="table_header">Purchase Date</th>
         <tr>
         %for purchase in sales:
             <tr>
                 <td><a href='/catalog/receipt/${ purchase.id }'>${ purchase.id }</a></td>
-                <td>${ purchase.purchased}</td>
+                <td>${ purchase.purchased.strftime('%m-%d-%Y')}</td>
             </tr>
         %endfor
     </table>

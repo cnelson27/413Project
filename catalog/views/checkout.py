@@ -19,8 +19,8 @@ def process_request(request):
         cart = request.user.get_shopping_cart()
         form.sale = cart
         if form.is_valid():
-            return HttpResponseRedirect('/catalog/receipt/' + str(cart.id))
-    else: 
+            return HttpResponseRedirect('/catalog/receipt/' + str(cart.id))   
+    else:
         form = addressForm()
 
     return request.dmp.render('checkout.html', {
@@ -36,6 +36,8 @@ class addressForm(forms.Form):
     stripeToken = forms.CharField(widget=forms.HiddenInput())
 
     def clean(self):
+        if not cmod.SaleItem.objects.filter(sale=self.sale, status='A').exists():
+            raise forms.ValidationError('No Items in Cart')
         try:
             self.sale.finalize(self.cleaned_data['stripeToken'])
         except Exception as e:

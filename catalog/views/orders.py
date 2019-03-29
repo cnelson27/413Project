@@ -7,7 +7,7 @@ from catalog import models as cmod
 @view_function
 def process_request(request):
     if request.user.is_authenticated == True:
-        sales = cmod.Sale.objects.filter(user=request.user)
+        sales = cmod.Sale.objects.filter(user=request.user, purchased__isnull = False).order_by('purchased')
     else:
         return HttpResponseRedirect('/account/login/')
 
