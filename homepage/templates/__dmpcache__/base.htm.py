@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1553877631.6671505
+_modified_time = 1554785897.2990458
 _enable_loop = True
 _template_filename = 'C:/Users/Colby Nelson/dmp_projects/Project1/homepage/templates/base.htm'
 _template_uri = 'base.htm'
@@ -22,20 +22,20 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        self = context.get('self', UNDEFINED)
-        user = context.get('user', UNDEFINED)
         def title():
             return render_title(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
-        def site_right():
-            return render_site_right(context._locals(__M_locals))
-        def site_left():
-            return render_site_left(context._locals(__M_locals))
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def site_center():
             return render_site_center(context._locals(__M_locals))
+        user = context.get('user', UNDEFINED)
+        self = context.get('self', UNDEFINED)
+        def site_right():
+            return render_site_right(context._locals(__M_locals))
         def site_menu():
             return render_site_menu(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
+        def site_left():
+            return render_site_left(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('<!DOCTYPE html>\r\n<html>\r\n    \r\n    <head>\r\n        <meta charset="UTF-8">\r\n        <meta name="viewport" content="width=device-width, initial-scale=1">\r\n\r\n        <title>Colby Nelson &mdash; ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
@@ -43,11 +43,11 @@ def render_body(context,**pageargs):
         
 
         __M_writer('</title>\r\n\r\n')
-        __M_writer('        <script src="')
+        __M_writer('        <script type="text/js" src="')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( STATIC_URL ))
-        __M_writer('homepage/media/jquery-3.3.1.js"></script>\r\n        <script src="')
+        __M_writer('homepage/media/jquery-3.3.1.js"></script>\r\n        <script type="text/js" src="')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( STATIC_URL ))
-        __M_writer('homepage/scripts/tether.js"></script>\r\n        <script src="')
+        __M_writer('homepage/scripts/tether.js"></script>\r\n        <script type="text/js" src="')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( STATIC_URL ))
         __M_writer('homepage/media/bootstrap-4.0.0-alpha.6-dist/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.js"></script>\r\n        <link rel="stylesheet" type="text/css" href="')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( STATIC_URL ))
